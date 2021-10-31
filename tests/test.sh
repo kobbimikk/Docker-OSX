@@ -234,10 +234,29 @@ docker-osx:naked-auto () {
     docker tag docker-osx:naked-auto sickcodes/docker-osx:naked-auto
 }
 
+docker-osx:high-sierra () {
+    docker build ${NO_CACHE} \
+        --build-arg VERSION=10.13.6 \
+        --build-arg RANKMIRRORS=true \
+        --build-arg MIRROR_COUNTRY="${MIRROR_COUNTRY}" \
+        -f ./Dockerfile \
+        -t docker-osx:high-sierra .
+    docker tag docker-osx:high-sierra sickcodes/docker-osx:high-sierra
+}
+
+docker-osx:mojave () {
+    docker build ${NO_CACHE} \
+        --build-arg VERSION=10.14.4 \
+        --build-arg RANKMIRRORS=true \
+        --build-arg MIRROR_COUNTRY="${MIRROR_COUNTRY}" \
+        -f ./Dockerfile \
+        -t docker-osx:mojave .
+    docker tag docker-osx:mojave sickcodes/docker-osx:mojave
+}
 
 docker-osx:big-sur () {
     docker build ${NO_CACHE} \
-        --build-arg VERSION=11 \
+        --build-arg VERSION=11.6 \
         --build-arg RANKMIRRORS=true \
         --build-arg MIRROR_COUNTRY="${MIRROR_COUNTRY}" \
         -f ./Dockerfile \
@@ -247,11 +266,21 @@ docker-osx:big-sur () {
 
 docker-osx:monterey () {
     docker build ${NO_CACHE} \
+        --build-arg VERSION=12.0.1 \
         --build-arg RANKMIRRORS=true \
         --build-arg MIRROR_COUNTRY="${MIRROR_COUNTRY}" \
-        -f ./Dockerfile.monterey \
+        -f ./Dockerfile \
         -t docker-osx:monterey .
     docker tag docker-osx:monterey sickcodes/docker-osx:monterey
+}
+
+docker-osx:beta () {
+    docker build ${NO_CACHE} \
+        --build-arg RANKMIRRORS=true \
+        --build-arg MIRROR_COUNTRY="${MIRROR_COUNTRY}" \
+        -f ./Dockerfile.beta \
+        -t docker-osx:beta .
+    docker tag docker-osx:beta sickcodes/docker-osx:beta
 }
 
 docker-osx:auto () {

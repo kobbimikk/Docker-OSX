@@ -58,7 +58,7 @@ SHELL ["/bin/bash", "-c"]
 
 # change disk size here or add during build, e.g. --build-arg VERSION=10.14.5 --build-arg SIZE=50G
 ARG SIZE=200G
-ARG VERSION=10.15.6
+ARG VERSION=10.15.7
 
 # OPTIONAL: Arch Linux server mirrors for super fast builds
 # set RANKMIRRORS to any value other that nothing, e.g. -e RANKMIRRORS=true
@@ -146,7 +146,7 @@ WORKDIR /home/arch/OSX-KVM
 
 RUN wget https://raw.githubusercontent.com/sickcodes/Docker-OSX/master/fetch-macOS.py
 
-RUN [[ "${VERSION%%.*}" -lt 11 ]] && { python fetch-macOS.py --version "${VERSION}" \
+RUN [[ "${VERSION%%.*}" -lt 12 ]] && { python fetch-macOS.py --version "${VERSION}" \
         && qemu-img convert BaseSystem.dmg -O qcow2 -p -c BaseSystem.img \
         && qemu-img create -f qcow2 mac_hdd_ng.img "${SIZE}" \
         && rm -f BaseSystem.dmg \
